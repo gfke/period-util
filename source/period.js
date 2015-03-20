@@ -15,21 +15,6 @@ var moment = require('moment'),
     REGEX_IS_UNIT_AND_NUMBER,
     PERIOD_MODES;
 
-
-/*
-(function (root, factory) {
-    if (typeof module !== 'undefined' && module.exports) {
-        // CommonJS
-        module.exports = factory(require('moment'), require('moment-range'));
-    } else if (typeof define === 'function' && define.amd) {
-        // AMD
-        define(['moment'], factory);
-    } else {
-        // Global Variables
-        root.period = factory(root.moment);
-    }
-}(this, function (moment) {
-*/
     moment.locale('de', {
         week: {
             dow: 1, // Monday is the first day of the week.
