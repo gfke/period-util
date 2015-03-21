@@ -144,6 +144,46 @@ describe('Unit class', function () {
     });
 });
 
+describe('Method getHalfyearNoFromTime', function () {
+    it('should return the correct halfyear number', function () {
+        var march21_2015 = 1426951620000,
+            june1_2015 = 1433153410000,
+            july23_2015 = 1437646200000;
+        expect(period.getHalfyearNoFromTime(march21_2015)).toBe(1);
+        expect(period.getHalfyearNoFromTime(june1_2015)).toBe(1);
+        expect(period.getHalfyearNoFromTime(july23_2015)).toBe(2);
+    })
+});
+
+describe('Method getQuarterNoFromTime', function () {
+    it('should return the correct quater number', function () {
+        var march21_2015 = 1426951620000,
+            june1_2015 = 1433153410000,
+            july23_2015 = 1437646200000;
+        expect(period.getQuarterNoFromTime(march21_2015)).toBe(1);
+        expect(period.getQuarterNoFromTime(june1_2015)).toBe(2);
+        expect(period.getQuarterNoFromTime(july23_2015)).toBe(3);
+    })
+});
+
+describe('Method getIsoWeekYearFromTime', function () {
+    it('should return the correct ISO week year', function () {
+        var march21_2015 = 1426951620000,
+            december29_2014 = 1419847800000;
+        expect(period.getIsoWeekYearFromTime(march21_2015)).toBe(2015);
+        expect(period.getIsoWeekYearFromTime(december29_2014)).toBe(2015);
+    })
+});
+
+describe('Method getIsoWeekNoFromTime', function () {
+    it('should return the correct ISO week number', function () {
+        var march21_2015 = 1426951620000,
+            december29_2014 = 1419847800000;
+        expect(period.getIsoWeekNoFromTime(march21_2015)).toBe(12);
+        expect(period.getIsoWeekNoFromTime(december29_2014)).toBe(1);
+    })
+});
+
 describe('Helper method getStringForUtcTimeAndFormat', function () {
     it('should replace internal placeholders', function () {
         var time,

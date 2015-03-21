@@ -123,7 +123,22 @@ var moment = require('moment'),
         return result;
     }
 
-    // --------------------------------------------------
+
+    /**
+     * Converts the given timestamp to a format and returns the result as integer value
+     *
+     * @param time
+     * @param format
+     * @returns {Number}
+     */
+    function getIntForTimeAndFormat(time, format) {
+        var int;
+
+        int = parseInt(moment(time).utc().format(format), 10);
+        return int;
+    }
+
+// --------------------------------------------------
     //  Unit
     // --------------------------------------------------
 
@@ -643,9 +658,49 @@ var moment = require('moment'),
         return new Unit(id);
     };
 
+    /**
+     * Returns the ISO week number of the given UTC timestamp
+     *
+     * @param time
+     * @returns {Number}
+     */
+    api.getIsoWeekNoFromTime = function (time) {
+        return getIntForTimeAndFormat(time, 'W');
+    };
+
+    /**
+     * Returns the ISO week year of the given UTC timestamp
+     *
+     * @param time
+     * @param short
+     * @returns {Number}
+     */
+    api.getIsoWeekYearFromTime = function (time, short) {
+        return getIntForTimeAndFormat(time, short ? 'GG' : 'GGGG');
+    };
+
+    /**
+     * Returns the quarter number of the given UTC timestamp
+     *
+     * @param time
+     * @returns {number}
+     */
+    api.getQuarterNoFromTime = function (time) {
+        return getQuarterNoFromTime(time);
+    };
+
+    /**
+     * Returns the halfyear number of the given UTC timestamp
+     * @param time
+     * @returns {number}
+     */
+    api.getHalfyearNoFromTime = function (time) {
+        return getHalfyearNoFromTime(time);
+    };
+
     api.PERIOD_MODES = PERIOD_MODES;
 
-//Expose privates for testing
+    //Expose privates for testing
     api._getNumberOfDaysInMonth = getNumberOfDaysInMonth;
     api._setPeriodOnMoment = setPeriodOnMoment;
     api._isNewPeriodGroup = isNewPeriodGroup;
@@ -654,6 +709,4 @@ var moment = require('moment'),
     api._expandRangeToCompletePeriods = expandRangeToCompletePeriods;
     api._getStringForUtcTimeAndFormat = getStringForUtcTimeAndFormat;
 
-// }));
-
-   module.exports = api;
+    module.exports = api;

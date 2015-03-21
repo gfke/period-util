@@ -1,3 +1,7 @@
+# 0.1.0
+
+- Added api methods for retrieving ISO week & year, halfyear and quarter number from UTC timestamp
+
 # 0.0.3
 
 - Removed css reference from package.json
