@@ -138,7 +138,7 @@ var moment = require('moment'),
         return int;
     }
 
-// --------------------------------------------------
+    // --------------------------------------------------
     //  Unit
     // --------------------------------------------------
 
@@ -697,6 +697,88 @@ var moment = require('moment'),
     api.getHalfyearNoFromTime = function (time) {
         return getHalfyearNoFromTime(time);
     };
+
+
+    /**
+     * Returns the current date
+     *
+     * @returns {String}
+     */
+    api.getCurrentDate = function () {
+        return moment().format('YYYY-MM-DD');
+    }
+
+    /**
+     * Returns a date matching the period relative to the given offset, whereas
+     * the start period is either specified or the current period
+    *
+    * @param unit
+    * @param step
+    * @param from
+    */
+    api.getRelativePeriod = function (unit, offset, from) {
+        var pos,
+            stepVal,
+            stepUnit,
+            result;
+
+        if (from === undefined) {
+            from = api.getCurrentDate();
+        }
+
+        pos = moment(from).utc();
+
+        if (offset === 0) {
+            return from;
+        }
+        stepVal = offset;
+        switch (unit) {
+            case PERIOD_MODES.DAYS:
+                stepUnit = 'd';
+                break;
+            case PERIOD_MODES.WEEKS:
+                stepUnit = 'w';
+                break;
+            case PERIOD_MODES.MONTHS:
+                stepUnit = 'M';
+                break;
+            case PERIOD_MODES.QUARTERS:
+                stepUnit = 'Q';
+                break;
+            case PERIOD_MODES.HALFYEARS:
+                stepUnit = 'Q';
+                stepVal *= 2;
+                break;
+            case PERIOD_MODES.YEARS:
+                stepUnit = 'y';
+                break;
+        }
+
+        if (offset > 0) {
+            pos = pos.add(stepVal, stepUnit);
+        } else {
+            pos = pos.subtract(-stepVal, stepUnit);
+        }
+        result = pos.format('YYYY-MM-DD');
+        return result;
+    };
+
+    api.getModes = function (keys) {
+        var i,
+            iMax,
+            key,
+            modes;
+
+        modes = {};
+        iMax = keys.length;
+        for (i = 0; i < iMax; i += 1) {
+            key = keys[i];
+            if (PERIOD_MODES.hasOwnProperty(key)) {
+                modes[key] = PERIOD_MODES[key];
+            }
+        }
+        return modes;
+    }
 
     api.PERIOD_MODES = PERIOD_MODES;
 
