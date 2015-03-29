@@ -726,7 +726,7 @@ var moment = require('moment'),
             from = api.getCurrentDate();
         }
 
-        pos = moment(from).utc();
+        pos = moment.utc(from);
 
         if (offset === 0) {
             return from;
