@@ -33,7 +33,7 @@ function countMonthsInMoments(array, value) {
     return count;
 }
 
-describe('Method isValidUnit', function() {
+describe('Method isValidUnit', function () {
     var id,
         expected = {};
 
@@ -82,21 +82,21 @@ describe('Method isValidUnit', function() {
 });
 
 describe('Method getUnit', function () {
-   it('should only instantiate allowed units', function () {
-       expect(function () {
-           period.getUnit('foo');
-       }).toThrow();
-       expect(function () {
-           period.getUnit(periodModes.DAYS);
-           period.getUnit(periodModes.MONTHS);
-           period.getUnit(periodModes.WEEKS);
-           period.getUnit(periodModes.QUARTERS);
-           period.getUnit(periodModes.HALFYEARS);
-           period.getUnit(periodModes.YEARS);
-           period.getUnit(periodModes.TOTAL);
-           period.getUnit(periodModes.YTD);
-       }).not.toThrowError();
-   })
+    it('should only instantiate allowed units', function () {
+        expect(function () {
+            period.getUnit('foo');
+        }).toThrow();
+        expect(function () {
+            period.getUnit(periodModes.DAYS);
+            period.getUnit(periodModes.MONTHS);
+            period.getUnit(periodModes.WEEKS);
+            period.getUnit(periodModes.QUARTERS);
+            period.getUnit(periodModes.HALFYEARS);
+            period.getUnit(periodModes.YEARS);
+            period.getUnit(periodModes.TOTAL);
+            period.getUnit(periodModes.YTD);
+        }).not.toThrowError();
+    })
 });
 
 describe('Unit class', function () {
@@ -132,15 +132,27 @@ describe('Unit class', function () {
     });
 
     it('method getShortFormat should return a format for the basic units', function () {
-        expect(function() { days.getShortFormat(); }).not.toThrow();
-        expect(function() { total.getShortFormat(); }).not.toThrow();
-        expect(function() { ytd.getShortFormat(); }).not.toThrow();
+        expect(function () {
+            days.getShortFormat();
+        }).not.toThrow();
+        expect(function () {
+            total.getShortFormat();
+        }).not.toThrow();
+        expect(function () {
+            ytd.getShortFormat();
+        }).not.toThrow();
     });
 
     it('method getLongFormat should return a format for the basic units', function () {
-        expect(function() { days.getLongFormat(); }).not.toThrow();
-        expect(function() { total.getLongFormat(); }).not.toThrow();
-        expect(function() { ytd.getLongFormat(); }).not.toThrow();
+        expect(function () {
+            days.getLongFormat();
+        }).not.toThrow();
+        expect(function () {
+            total.getLongFormat();
+        }).not.toThrow();
+        expect(function () {
+            ytd.getLongFormat();
+        }).not.toThrow();
     });
 });
 
@@ -595,4 +607,25 @@ describe('Period', function () {
 
     });
 
+});
+
+describe('Method getPeriodDifference', function () {
+    var differenceStartDate = '2015/01/05',
+        differenceEndDate = '2016/01/25';
+
+    it('should return 365 for periodModes.DAYS', function () {
+        expect(period.getPeriodDifference(differenceStartDate, differenceEndDate, periodModes.DAYS)).toBe(365 + 20)
+    });
+
+    it('should return 12 for periodModes.MONTH', function () {
+        expect(period.getPeriodDifference(differenceStartDate, differenceEndDate, periodModes.MONTHS)).toBe(12)
+    });
+
+    it('should return 4 for periodModes.QUARTERS', function () {
+        expect(period.getPeriodDifference(differenceStartDate, differenceEndDate, periodModes.QUARTERS)).toBe(4)
+    });
+
+    it('should return 1 for periodModes.YEARS', function () {
+        expect(period.getPeriodDifference(differenceStartDate, differenceEndDate, periodModes.YEARS)).toBe(1)
+    });
 });
