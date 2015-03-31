@@ -156,6 +156,7 @@ Unit = function (id) {
     this.id = id;
     this.longFormat = null;
     this.shortFormat = null;
+    this.longDisplayFormat = null;
 };
 
 /**
@@ -218,6 +219,14 @@ Unit.prototype.getLongFormat = function () {
         this.longFormat = getLongPeriodFormat(this.id);
     }
     return this.longFormat;
+};
+
+
+Unit.prototype.getLongStringDisplayFormat = function () {
+    if (null === this.longDisplayFormat) {
+        this.longDisplayFormat = getLongPeriodDisplayFormat(this.id);
+    }
+    return this.longDisplayFormat;
 };
 
 /**
@@ -435,6 +444,28 @@ function createDateObject(periodMode, momentToUse, newValue) {
         key: clonedMoment.format(formatToUse),
         value: clonedMoment
     };
+}
+
+
+function getLongPeriodDisplayFormat(periodMode) {
+    if (periodMode === 'ytd') {
+        return '[YTD] YYYY';
+    }
+    switch (periodMode[0]) {
+        case PERIOD_MODES.DAYS:
+            return 'DD.MM.YYYY';
+        case PERIOD_MODES.WEEKS:
+            return '[KW] W GGGG';
+        case PERIOD_MODES.MONTHS:
+            return 'MMMM YYYY';
+        case PERIOD_MODES.QUARTERS:
+            return '[Q.]Q YYYY';
+        case PERIOD_MODES.YEARS:
+            return 'YYYY';
+        case PERIOD_MODES.TOTAL:
+            return '[Total]';
+    }
+    throw 'No long period format found for "' + periodMode + '"';
 }
 
 function getShortPeriodFormat(periodMode) {

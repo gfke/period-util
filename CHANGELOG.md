@@ -1,3 +1,7 @@
+# 0.2.1
+
+- Add new displayformat method
+
 # 0.2.0
 
 - Add method to define the period difference  between two dates
