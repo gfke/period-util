@@ -1,3 +1,7 @@
+# 0.2.0
+
+- Add method to define the period difference  between two dates
+
 # 0.1.0
 
 - Added api methods for retrieving ISO week & year, halfyear and quarter number from UTC timestamp

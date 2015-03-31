@@ -709,6 +709,13 @@ api.getCurrentDate = function () {
 };
 
 
+/**
+ * Method to define how many of the provided periods are between the dates
+ *
+ * @param {date|moment} startDate
+ * @param {date|moment} endDate
+ * @param {PERIOD_MODE} periodMode
+ */
 api.getPeriodDifference = function (startDate, endDate, periodMode) {
     //Parse input to moment object
     var start = moment(startDate),
@@ -732,7 +739,9 @@ api.getPeriodDifference = function (startDate, endDate, periodMode) {
  * @param step
  * @param from
  */
-api.getRelativePeriod = function (unit, offset, from) {
+api.getRelativePeriod = function (unit, offset, from, formatString) {
+    formatString || 'YYYY-MM-DD';
+
     var pos,
         stepVal,
         stepUnit,
