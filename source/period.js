@@ -838,6 +838,8 @@ api.getModes = function (keys) {
 
 api.PERIOD_MODES = PERIOD_MODES;
 
+api.getMomentRangeIterator =getMomentRangeIterator;
+
 //Expose privates for testing
 api._getNumberOfDaysInMonth = getNumberOfDaysInMonth;
 api._setPeriodOnMoment = setPeriodOnMoment;

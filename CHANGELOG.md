@@ -1,3 +1,7 @@
+# 0.3.0
+
+- Expose getMomentRangeIterator
+
 # 0.2.1
 
 - Add new displayformat method
