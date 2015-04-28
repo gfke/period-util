@@ -119,6 +119,9 @@ function getStringForUtcTimeAndFormat(time, format) {
     if ('string' === typeof time) {
         time = parseInt(time, 10);
     }
+    if (time === 0) {
+        return '';
+    }
     result = replaceCustomPlaceholders(time, moment(time).utc().format(format));
     return result;
 }
@@ -463,7 +466,7 @@ function getLongPeriodDisplayFormat(periodMode) {
         case PERIOD_MODES.YEARS:
             return 'YYYY';
         case PERIOD_MODES.TOTAL:
-            return '[Total]';
+            return '';
     }
     throw 'No long period format found for "' + periodMode + '"';
 }
@@ -486,7 +489,7 @@ function getShortPeriodFormat(periodMode) {
         case PERIOD_MODES.YEARS:
             return 'YYYY';
         case PERIOD_MODES.TOTAL:
-            return '[Total]';
+            return '';
     }
     throw 'No short period format found for "' + periodMode + '"';
 }
@@ -509,7 +512,7 @@ function getLongPeriodFormat(periodMode) {
         case PERIOD_MODES.YEARS:
             return 'YYYY';
         case PERIOD_MODES.TOTAL:
-            return '[Total]';
+            return '';
     }
     throw 'No long period format found for "' + periodMode + '"';
 }
@@ -530,7 +533,7 @@ function getPeriodGroupFormat(periodMode) {
         case PERIOD_MODES.YEARS:
             return 'YYYY';
         case PERIOD_MODES.TOTAL:
-            return '[Total]';
+            return '';
     }
     throw 'No long period format found for "' + periodMode + '"';
 }

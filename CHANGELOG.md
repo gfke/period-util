@@ -1,3 +1,7 @@
+# 0.4.0
+
+- Replaced text "total" in date formatting by empty string
+
 # 0.3.0
 
 - Expose getMomentRangeIterator

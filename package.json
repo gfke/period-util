@@ -1,7 +1,7 @@
 {
   "name": "period-util",
   "description": "Utility methods for periods",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "homepage": "https://github.com/gfke/period-util",
   "bugs": "https://github.com/gfke/period-util/issues",
   "license": "none",
