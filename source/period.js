@@ -774,7 +774,7 @@ api.getPeriodDifference = function (startDate, endDate, periodMode) {
  * @param from
  */
 api.getRelativePeriod = function (unit, offset, from, formatString) {
-    formatString || 'YYYY-MM-DD';
+    formatString = formatString || 'YYYY-MM-DD';
 
     var pos,
         stepVal,
