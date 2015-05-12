@@ -769,9 +769,12 @@ api.getPeriodDifference = function (startDate, endDate, periodMode) {
  * Returns a date matching the period relative to the given offset, whereas
  * the start period is either specified or the current period
  *
- * @param unit
- * @param step
- * @param from
+ * @param {string} unit
+ * @param {Number} offset
+ * @param {string} from
+ * @param {string} formatString
+ *
+ * @returns {object|moment} returns a moment js object or the date "from"
  */
 api.getRelativePeriod = function (unit, offset, from, formatString) {
     formatString = formatString || 'YYYY-MM-DD';
