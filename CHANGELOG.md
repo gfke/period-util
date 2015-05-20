@@ -1,3 +1,7 @@
+# 0.4.1
+
+- Minor bugfix in `getRelativePeriod`
+
 # 0.4.0
 
 - Replaced text "total" in date formatting by empty string
