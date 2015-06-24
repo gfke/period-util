@@ -1,3 +1,7 @@
+# 0.4.2
+
+- Fix constructor not using UTC
+
 # 0.4.1
 
 - Minor bugfix in `getRelativePeriod`
