@@ -561,7 +561,7 @@ function isNewPeriodGroup(periodMode, momentToUse) {
         case PERIOD_MODES.DAYS:
             return momentToUse.date() === 1;
         case PERIOD_MODES.WEEKS:
-            return momentToUse.date() === 1;
+            return momentToUse.week() === 1;
         case PERIOD_MODES.MONTHS:
         case PERIOD_MODES.QUARTERS:
             return momentToUse.dayOfYear() === 1;
