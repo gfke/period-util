@@ -263,8 +263,8 @@ Unit.prototype.getShortStringForTime = function (time) {
 Period = function (periodMode, start, end) {
     //TODO:Make variables private and expose setters and getters
     this.periodMode = periodMode;
-    this.start = moment(start);
-    this.end = moment(end);
+    this.start = moment.utc(start);
+    this.end = moment.utc(end);
 
     expandRangeToCompletePeriods(this.start, this.end, this.periodMode);
 
