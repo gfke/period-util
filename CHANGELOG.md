@@ -1,3 +1,12 @@
+# 0.4.3
+
+- Fix formatting of quarters
+- Group weeks by week of year
+
+# 0.4.2
+
+- Fix constructor not using UTC
+
 # 0.4.1
 
 - Minor bugfix in `getRelativePeriod`
