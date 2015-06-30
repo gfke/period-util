@@ -1,7 +1,7 @@
 {
   "name": "period-util",
   "description": "Utility methods for periods",
-  "version": "0.4.1",
+  "version": "0.4.3",
   "homepage": "https://github.com/gfke/period-util",
   "bugs": "https://github.com/gfke/period-util/issues",
   "license": "none",
@@ -17,10 +17,15 @@
       "email": "jan.nahody@gmail.com",
       "url": "https://github.com/nahody"
     },
-	{
+    {
       "name": "Michael Raith",
       "email": "Bruce17@users.noreply.github.com",
       "url": "https://github.com/Bruce17"
+    },
+    {
+      "name": "Stefan Panitz",
+      "email": "info@stefanpanitz.de",
+      "url": "https://github.com/spanitz"
     }
   ],
   "repository": {
