@@ -85,7 +85,6 @@ function getHalfyearNoFromTime(time) {
  * Replaces our internal placeholders for quarters and halfyears in the given
  * string by the appropriate values of the timestamp:
  *
- * %Q% is replaced by the quarter number of the timestamp
  * %H% is replaced by the half year number of the timestamp
  *
  * @param time
@@ -95,10 +94,6 @@ function getHalfyearNoFromTime(time) {
 function replaceCustomPlaceholders(time, result) {
     var no;
 
-    if (-1 !== result.indexOf('%Q%')) {
-        no = getQuarterNoFromTime(time);
-        result = result.replace('%Q%', no);
-    }
     if (-1 !== result.indexOf('%H%')) {
         no = getHalfyearNoFromTime(time);
         result = result.replace('%H%', no);
@@ -483,7 +478,7 @@ function getShortPeriodFormat(periodMode) {
         case PERIOD_MODES.MONTHS:
             return 'MMM \'YY';
         case PERIOD_MODES.QUARTERS:
-            return '[Q.%Q%] \'YY';
+            return '[Q.]Q \'YY';
         case PERIOD_MODES.HALFYEARS:
             return '[H%H%] \'YY';
         case PERIOD_MODES.YEARS:
@@ -506,7 +501,7 @@ function getLongPeriodFormat(periodMode) {
         case PERIOD_MODES.MONTHS:
             return 'MMMM YYYY';
         case PERIOD_MODES.QUARTERS:
-            return '[Q%Q%] YYYY';
+            return '[Q]Q YYYY';
         case PERIOD_MODES.HALFYEARS:
             return '[H%H%] YYYY';
         case PERIOD_MODES.YEARS:
