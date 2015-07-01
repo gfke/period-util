@@ -1,3 +1,7 @@
+# 0.5.0
+
+- Bump moment-range to 2.0.2
+
 # 0.4.3
 
 - Fix formatting of quarters

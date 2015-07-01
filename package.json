@@ -1,7 +1,7 @@
 {
   "name": "period-util",
   "description": "Utility methods for periods",
-  "version": "0.4.3",
+  "version": "0.5.0",
   "homepage": "https://github.com/gfke/period-util",
   "bugs": "https://github.com/gfke/period-util/issues",
   "license": "none",
@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "moment": "^2.9.0",
-    "moment-range": "^1.0.5"
+    "moment-range": "^2.0.2"
   },
   "devDependencies": {
     "gulp": "^3.8.11",
