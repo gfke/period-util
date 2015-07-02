@@ -1,3 +1,6 @@
+# 0.6.0
+-- Add new method to get all dates in period
+
 # 0.5.0
 
 - Bump moment-range to 2.0.2
