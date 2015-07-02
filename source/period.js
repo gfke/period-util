@@ -62,9 +62,9 @@ REGEX_IS_UNIT = new RegExp('^(' +
  * @returns {number}
  */
 function getQuarterNoFromTime(time) {
-    var date = new Date(time),
+    var date  = new Date(time),
         month = date.getMonth(),
-        no = Math.floor(month / 3) + 1;
+        no    = Math.floor(month / 3) + 1;
     return no;
 }
 
@@ -75,9 +75,9 @@ function getQuarterNoFromTime(time) {
  * @returns {number}
  */
 function getHalfyearNoFromTime(time) {
-    var date = new Date(time),
+    var date  = new Date(time),
         month = date.getMonth(),
-        no = Math.floor(month / 6) + 1;
+        no    = Math.floor(month / 6) + 1;
     return no;
 }
 
@@ -275,7 +275,7 @@ Period = function (periodMode, start, end) {
 
 Period.prototype.getLongPeriodLabel = function () {
     var labelStart = this.getLongStringForStart(),
-        labelEnd = this.getLongStringForEnd();
+        labelEnd   = this.getLongStringForEnd();
 
     return labelStart + ' - ' + labelEnd;
 };
@@ -294,7 +294,7 @@ Period.prototype.isEqual = function (periodToCompare) {
 
 Period.prototype.getChecksum = function () {
     var startCheckSum = this.start.unix(),
-        endCheckSum = this.end.unix();
+        endCheckSum   = this.end.unix();
 
     return this.periodMode + '/' + startCheckSum + '/' + endCheckSum;
 };
@@ -326,16 +326,15 @@ Period.prototype.getGroupStringFormat = function () {
 /**
  * Returns array of DTOs with all dates the period consists of, grouped by its PeriodMode
  * Checks if the start and end values have been altered and recalculates if so
- * @returns array {{key: (string), value: (moment)}}
+ * @returns [{key: (string), value: (moment)}]
  */
 Period.prototype.getValueAsObjects = function () {
     if (this.values !== null && this.isDirty() === false) {
         return this.values;
     }
-    var periodInstance = this,
+    var periodInstance      = this,
         momentRangeIterator = getMomentRangeIterator(this.periodMode),
-        currentRange = moment().range(this.start, this.end);
-
+        currentRange        = moment().range(this.start, this.end);
 
     this.values = [];
     currentRange.by(momentRangeIterator, function (momentToUse) {
@@ -345,6 +344,17 @@ Period.prototype.getValueAsObjects = function () {
 
     this.checksum = this.getChecksum();
     return this.values;
+};
+
+Period.prototype.getDaysInPeriod = function () {
+    var currentRange = moment().range(this.start, this.end),
+        days         = [];
+
+    currentRange.by('days', function (momentToUse) {
+        days.push(momentToUse);
+    });
+
+    return days;
 };
 
 function expandRangeToCompletePeriods(start, end, periodMode) {
@@ -431,7 +441,7 @@ function setPeriodToMaximum(momentToUse, periodMode) {
  * @returns {{key: (string), value: (moment)}}
  */
 function createDateObject(periodMode, momentToUse, newValue) {
-    var formatToUse = getShortPeriodFormat(periodMode),
+    var formatToUse  = getShortPeriodFormat(periodMode),
         clonedMoment = moment(momentToUse);
 
     if (newValue) {
@@ -748,7 +758,7 @@ api.getCurrentDate = function () {
 api.getPeriodDifference = function (startDate, endDate, periodMode) {
     //Parse input to moment object
     var start = moment(startDate),
-        end = moment(endDate);
+        end   = moment(endDate);
 
     //Reduce input to minimum off provided periodMode
     setPeriodToMinimum(start, periodMode);
@@ -839,7 +849,7 @@ api.getModes = function (keys) {
 
 api.PERIOD_MODES = PERIOD_MODES;
 
-api.getMomentRangeIterator =getMomentRangeIterator;
+api.getMomentRangeIterator = getMomentRangeIterator;
 
 //Expose privates for testing
 api._getNumberOfDaysInMonth = getNumberOfDaysInMonth;
