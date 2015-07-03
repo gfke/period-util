@@ -258,13 +258,29 @@ Unit.prototype.getShortStringForTime = function (time) {
  * @param {string} periodMode Describes which time unit the period uses
  * @param {date|moment} start The date on which the period starts
  * @param {date|moment} end The date on which the period ends
+ * @param {date|moment} minDate The date on which the period must start at minimum
+ * @param {date|moment} maxDate The date on which the period must end at a maximum
  * @constructor
  */
-Period = function (periodMode, start, end) {
+Period = function (periodMode, start, end, minDate, maxDate) {
     //TODO:Make variables private and expose setters and getters
     this.periodMode = periodMode;
     this.start = moment.utc(start);
     this.end = moment.utc(end);
+
+    if (typeof minDate !== "undefined") {
+        var min = moment.utc(minDate);
+        if (this.start.isBefore(min)) {
+            this.start = min;
+        }
+    }
+
+    if (typeof maxDate !== "undefined") {
+        var max = moment.utc(maxDate);
+        if (this.end.isAfter(max)) {
+            this.end = max;
+        }
+    }
 
     expandRangeToCompletePeriods(this.start, this.end, this.periodMode);
 
@@ -670,10 +686,12 @@ api = {};
  * @param {string} periodMode PeriodMode of this instance
  * @param {date|moment} start The date on which the period starts
  * @param {date|moment} end The date on which the period ends
+ * @param {date|moment} minDate The date on which the period must start at minimum
+ * @param {date|moment} maxDate The date on which the period must end at a maximum
  * @returns {Period}
  */
-api.createPeriod = function (periodMode, start, end) {
-    return new Period(periodMode, start, end);
+api.createPeriod = function (periodMode, start, end, minDate, maxDate) {
+    return new Period(periodMode, start, end, minDate, maxDate);
 };
 
 /**
