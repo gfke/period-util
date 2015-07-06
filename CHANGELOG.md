@@ -1,5 +1,8 @@
+# HEAD
+- Cache day values like normale values
+
 # 0.6.0
--- Add new method to get all dates in period
+- Add new method to get all dates in period
 
 # 0.5.0
 
