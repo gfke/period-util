@@ -269,6 +269,7 @@ Period = function (periodMode, start, end) {
     expandRangeToCompletePeriods(this.start, this.end, this.periodMode);
 
     this.values = null;
+    this.dayValues = null;
     this.checksum = this.getChecksum();
 
 };
@@ -346,15 +347,25 @@ Period.prototype.getValueAsObjects = function () {
     return this.values;
 };
 
+/**
+ * Return an array with all days that are in this period
+ * @returns {Array}
+ */
 Period.prototype.getDaysInPeriod = function () {
-    var currentRange = moment().range(this.start, this.end),
-        days         = [];
+    if (this.dayValues !== null && this.isDirty() === false) {
+        return this.dayValues;
+    }
+
+    var periodInstance = this,
+        currentRange   = moment().range(this.start, this.end);
+
+    this.dayValues = [];
 
     currentRange.by('days', function (momentToUse) {
-        days.push(momentToUse);
+        periodInstance.dayValues.push(momentToUse);
     });
 
-    return days;
+    return this.dayValues;
 };
 
 function expandRangeToCompletePeriods(start, end, periodMode) {
