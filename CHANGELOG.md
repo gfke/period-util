@@ -1,4 +1,5 @@
 # 0.7.0
+- Cache day values like normale values
 - Add possiblity to check if period is in min/max range
 
 # 0.6.0
