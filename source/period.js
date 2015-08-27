@@ -270,14 +270,14 @@ Period = function (periodMode, start, end, minDate, maxDate) {
 
     if (typeof minDate !== "undefined") {
         var min = moment.utc(minDate);
-        if (this.start.isBefore(min)) {
+        if (this.start.isBefore(min) && this.start.isSame(min, 'day') === false) {
             this.start = min;
         }
     }
 
     if (typeof maxDate !== "undefined") {
         var max = moment.utc(maxDate);
-        if (this.end.isAfter(max)) {
+        if (this.end.isAfter(max) && this.end.isSame(max, 'day') === false) {
             this.end = max;
         }
     }
@@ -598,7 +598,7 @@ function isNewPeriodGroup(periodMode, momentToUse) {
         case PERIOD_MODES.DAYS:
             return momentToUse.date() === 1;
         case PERIOD_MODES.WEEKS:
-            return momentToUse.week() === 1;
+            return momentToUse.isoWeekday() === 1;
         case PERIOD_MODES.MONTHS:
         case PERIOD_MODES.QUARTERS:
             return momentToUse.dayOfYear() === 1;
