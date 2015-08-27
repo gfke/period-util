@@ -1,4 +1,4 @@
-# HEAD
+# 0.7.1
 - Min/Max date also accept same dates
 
 # 0.7.0
