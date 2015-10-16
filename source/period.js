@@ -262,11 +262,12 @@ Unit.prototype.getShortStringForTime = function (time) {
  * @param {date|moment} maxDate The date on which the period must end at a maximum
  * @constructor
  */
-Period = function (periodMode, start, end, minDate, maxDate) {
-    //TODO:Make variables private and expose setters and getters
+Period = function (periodMode, start, end, minDate, maxDate, preset, presetDate) {
+    // TODO: Make variables private and expose setters and getter
     this.periodMode = periodMode;
-    this.start = moment.utc(start);
-    this.end = moment.utc(end);
+    this.preset = preset || null;
+    this.start  = moment.utc(start);
+    this.end    = moment.utc(end);
 
     if (typeof minDate !== "undefined") {
         var min = moment.utc(minDate);
@@ -282,11 +283,13 @@ Period = function (periodMode, start, end, minDate, maxDate) {
         }
     }
 
+    this.presetDate = presetDate || this.end;
+
     expandRangeToCompletePeriods(this.start, this.end, this.periodMode);
 
-    this.values = null;
+    this.values    = null;
     this.dayValues = null;
-    this.checksum = this.getChecksum();
+    this.checksum  = this.getChecksum();
 
 };
 
@@ -701,8 +704,8 @@ api = {};
  * @param {date|moment} maxDate The date on which the period must end at a maximum
  * @returns {Period}
  */
-api.createPeriod = function (periodMode, start, end, minDate, maxDate) {
-    return new Period(periodMode, start, end, minDate, maxDate);
+api.createPeriod = function (periodMode, start, end, minDate, maxDate, preset) {
+    return new Period(periodMode, start, end, minDate, maxDate, preset);
 };
 
 /**
