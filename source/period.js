@@ -818,8 +818,7 @@ api.getRelativePeriod = function (unit, offset, from, formatString) {
 
     var pos,
         stepVal,
-        stepUnit,
-        result;
+        stepUnit;
 
     if (from === undefined) {
         from = api.getCurrentDate();
@@ -858,8 +857,8 @@ api.getRelativePeriod = function (unit, offset, from, formatString) {
     } else {
         pos = pos.subtract(-stepVal, stepUnit);
     }
-    result = pos.format('YYYY-MM-DD');
-    return result;
+
+    return pos.format(formatString);
 };
 
 api.getModes = function (keys) {

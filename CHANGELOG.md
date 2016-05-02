@@ -1,3 +1,7 @@
+# 0.7.3
+
+- Fix unused argument `formatString` in method `getRelativePeriod`.
+
 # 0.7.1
 - Min/Max date also accept same dates
 
