@@ -1,6 +1,4 @@
-# gulp-directive
-
-An example project for creating a directive module using the yoso-gulp package
+# Period utility module
 
 ### Install
 ```bash
