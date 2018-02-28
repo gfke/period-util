@@ -15,12 +15,7 @@ var moment      = require('moment'),
     REGEX_IS_UNIT_AND_NUMBER,
     PERIOD_MODES;
 
-moment.locale('de', {
-    week: {
-        dow: 1, // Monday is the first day of the week.
-        doy: 4  // The week that contains Jan 4th is the first week of the year.
-    }
-});
+moment.locale('de');
 
 PERIOD_MODES = {
     DAYS: 'd',
